@@ -43,3 +43,7 @@ Thumbs.db
 .env.*.local
 backend/.env
 frontend-web/.env
+
+# Don't ignore the frontend source lib folder (root pattern `lib/` is for Python libraries)
+!frontend-web/src/lib/
+!frontend-web/src/lib/**
