@@ -1,6 +1,8 @@
 # Virtual Environments
 backend/venv/
 frontend-web/node_modules/
+frontend-web/build/
+frontend-web/.svelte-kit/
 
 # Python
 __pycache__/
