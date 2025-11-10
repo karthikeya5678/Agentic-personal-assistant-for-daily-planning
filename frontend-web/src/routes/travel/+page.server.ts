@@ -1,6 +1,7 @@
 // src/routes/travel/+page.server.ts
 
 import type { Actions } from '@sveltejs/kit';
+import { apiUrl } from '$lib/api';
 
 export const actions: Actions = {
   default: async ({ request, fetch }) => {
@@ -11,7 +12,7 @@ export const actions: Actions = {
       date: formData.get('date')
     };
 
-    const response = await fetch('http://127.0.0.1:8000/api/v1/plan-trip', {
+    const response = await fetch(apiUrl('/api/v1/plan-trip'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

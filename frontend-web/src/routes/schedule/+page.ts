@@ -1,12 +1,13 @@
 // src/routes/schedule/+page.ts
 import type { PageLoad } from './$types';
+import { apiUrl } from '$lib/api';
 
 // The `load` function is SvelteKit's way of fetching data for a page.
 export const load: PageLoad = async ({ fetch }) => {
   console.log('Fetching schedule from backend...');
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/v1/schedule');
+    const response = await fetch(apiUrl('/api/v1/schedule'));
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

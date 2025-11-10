@@ -1,5 +1,6 @@
 // src/routes/exams/+page.server.ts
 import type { Actions } from '@sveltejs/kit';
+import { apiUrl } from '$lib/api';
 
 // We don't use 'redirect' so we need to tell SvelteKit to reload the page data
 export const actions: Actions = {
@@ -10,7 +11,7 @@ export const actions: Actions = {
       date: formData.get('date')
     };
 
-    await fetch('http://127.0.0.1:8000/api/v1/exams', {
+    await fetch(apiUrl('/api/v1/exams'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

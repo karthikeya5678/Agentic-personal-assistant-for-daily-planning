@@ -1,5 +1,6 @@
 // src/routes/profile/+page.server.ts
 import type { RequestEvent } from '@sveltejs/kit';
+import { apiUrl } from '$lib/api';
 
 export const actions = {
   default: async ({ request, fetch }: RequestEvent) => {
@@ -10,7 +11,7 @@ export const actions = {
       interests: formData.get('interests')
     };
 
-    await fetch('http://127.0.0.1:8000/api/v1/profile', {
+    await fetch(apiUrl('/api/v1/profile'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
