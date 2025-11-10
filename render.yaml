@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: agentic-personal-assistant-backend
+    runtime: python
+    pythonVersion: 3.11
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: DATABASE_URL
+        value: $DATABASE_URL
+      - key: GROQ_API_KEY
+        value: $GROQ_API_KEY
+      - key: TWILIO_ACCOUNT_SID
+        value: $TWILIO_ACCOUNT_SID
+      - key: TWILIO_AUTH_TOKEN
+        value: $TWILIO_AUTH_TOKEN
