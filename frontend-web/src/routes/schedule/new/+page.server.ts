@@ -1,6 +1,7 @@
 // src/routes/schedule/new/+page.server.ts
 
 import { redirect } from '@sveltejs/kit';
+import { apiUrl } from '$lib/api';
 
 export const actions = {
   // Add `{ fetch }` to the function parameters here
@@ -13,7 +14,7 @@ export const actions = {
     };
 
     // This `fetch` will now be the special SvelteKit version
-    await fetch('http://127.0.0.1:8000/api/v1/schedule', {
+    await fetch(apiUrl('/api/v1/schedule'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

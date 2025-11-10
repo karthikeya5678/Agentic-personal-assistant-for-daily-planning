@@ -1,10 +1,11 @@
 // src/routes/profile/+page.ts
 import type { PageLoad } from './$types';
+import { apiUrl } from '$lib/api';
 
 export const load: PageLoad = async ({ fetch }) => {
   console.log('Fetching user profile...');
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/v1/profile');
+    const response = await fetch(apiUrl('/api/v1/profile'));
     const profile = await response.json();
     return { profile };
   } catch (error) {
