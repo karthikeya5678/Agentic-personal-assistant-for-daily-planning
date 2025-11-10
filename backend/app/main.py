@@ -7,6 +7,7 @@ load_dotenv()
 # --- Original Imports ---
 from fastapi import FastAPI, Body, status
 from fastapi.middleware.cors import CORSMiddleware
+import os
 from typing import List
 from contextlib import asynccontextmanager
 
@@ -45,8 +46,21 @@ app = FastAPI(
 # --- CORS Middleware (No changes here) ---
 origins = [
     "http://localhost:5173",
-    "http://localhost:5174"
+    "http://localhost:5174",
 ]
+
+# Allow additional origins via env var (comma-separated), and include common production frontends.
+# Example: FRONTEND_ORIGINS="https://agentic-personal-assistant-for-daily.vercel.app,https://your-other-domain.com"
+env_frontends = os.getenv("FRONTEND_ORIGINS")
+if env_frontends:
+    origins += [o.strip() for o in env_frontends.split(",") if o.strip()]
+
+# Backwards-compatible: include likely Vercel hostnames that may be used (including a miss-typed variant)
+origins += [
+    "https://agentic-personal-assistant-for-daily.vercel.app",
+    "https://agentic-personal-assistant-for-dail.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
